@@ -1,0 +1,42 @@
+﻿@page
+@model Financier.Web.Pages.Portfolios.DetailsModel
+
+@{
+    ViewData["Title"] = $"Portfolio {@Html.DisplayNameFor(model => model.PortfolioPnL.Name)}";
+}
+
+<h1>Portfolio</h1>
+
+<h2>Profit (rub): {@Html.DisplayFor(model => model.PortfolioPnL.PnL.Profit)}</h2>
+<h2>Total (count): {@Html.DisplayFor(model => model.PortfolioPnL.PositionPnLs.Count)}</h2>
+
+<p>
+    <input type="hidden" asp-for="PortfolioId" />
+    <a asp-page="./UploadTrades" asp-route-id="@Model.PortfolioId">Upload Trades</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PortfolioPnL.PositionPnLs[0].Security.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortfolioPnL.PositionPnLs[0].PnL.Profit)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PortfolioPnL.PositionPnLs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Security.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PnL.Profit)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

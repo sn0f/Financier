@@ -1,0 +1,10 @@
+﻿@page
+@model Financier.Web.Pages.UploadTradesModel
+@{
+}
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Portfolio.Id" />
+    <input type="file" name="files" multiple="multiple" accept=".*" />
+    <input type="submit" value="Upload" />
+</form>

@@ -1,0 +1,52 @@
+﻿@page
+@model Financier.Web.SecuritiesModel
+
+@{
+    ViewData["Title"] = "Securities";
+}
+
+<h1>Securities</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Securities[0].ISIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Securities[0].Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Securities[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Securities[0].SecurityType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Securities)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecurityType)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
